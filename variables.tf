@@ -1,0 +1,10 @@
+variable "server_name" {}
+variable "linode_token" {}
+variable "linode_image" {}
+variable "linode_tags" {}
+variable "linode_region" {}
+variable "linode_type" {}
+variable "authorized_keys" {}
+variable "root_pass" {}
+variable "cloudflare_token" {}
+variable "cloudflare_zone_id" {}
