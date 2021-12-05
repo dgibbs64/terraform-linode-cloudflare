@@ -1,0 +1,10 @@
+server_name = [ "", "" ]
+root_pass = ""
+authorized_keys = ""
+linode_token = ""
+linode_image = [ "", "" ]
+linode_region = ""
+linode_type = ""
+linode_tags = [ "", "" ]
+cloudflare_token = ""
+cloudflare_zone_id = ""

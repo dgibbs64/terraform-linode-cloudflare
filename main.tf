@@ -35,9 +35,9 @@ resource "linode_instance" "linode-server" {
   tags = "${var.linode_tags}"
   region = "${var.linode_region}"
   type = "${var.linode_type}"
-  authorized_keys = [var.authorized_keys]
+  authorized_keys = [ var.authorized_keys ]
+  #root_pass = "${var.linode_root_pass}"
   watchdog_enabled = "true"
-  #root_pass = var.root_pass
 }
 
 # Ensure Cloudflare A Record Exists.
