@@ -6,7 +6,7 @@
 
 ## Description
 
-This configuration will allow you to spin up multiple Linode instance using Terraform, create Cloudflare A records for the Linode instances and apply rDNS to the Linode instances.
+Using Terraform, this configuration will allow you to spin up multiple Linode instances, create Cloudflare A records for the Linode instances and apply rDNS to the Linode instances.
 
 # Requirements
 
