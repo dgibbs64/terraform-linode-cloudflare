@@ -1,8 +1,6 @@
-
 # Terraform Linode Cloudflare
 
 ![terraform-linode-cloudflare](https://user-images.githubusercontent.com/4478206/144746465-3da65f8f-d522-4136-b8de-b44705f09752.png)
-
 
 ## Description
 
@@ -10,25 +8,27 @@ Using Terraform, this configuration will allow you to spin up multiple Linode in
 
 # Requirements
 
-* [Linode Account](https://linode.com)
-* [Cloudflare Account](https://www.cloudflare.com/)
-* Domain name
-* [Terraform installed](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+- [Linode Account](https://linode.com)
+- [Cloudflare Account](https://www.cloudflare.com/)
+- Domain name
+- [Terraform installed](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 # Authentication
 
 Multiple tokens will be required to authenticate terraform with Linode and Cloudflare.
 
-* [Linode API Token](https://www.linode.com/docs/guides/getting-started-with-the-linode-api/)
-* [Cloudflare API Token](https://developers.cloudflare.com/api/tokens/create)
-* [Cloudflare Zone ID](https://community.cloudflare.com/t/where-to-find-zone-id/132913)
-* [SSH Public Key](https://www.linode.com/docs/guides/use-public-key-authentication-with-ssh) (reccomended)
-* root Password (optional)
+- [Linode API Token](https://www.linode.com/docs/guides/getting-started-with-the-linode-api/)
+- [Cloudflare API Token](https://developers.cloudflare.com/api/tokens/create)
+- [Cloudflare Zone ID](https://community.cloudflare.com/t/where-to-find-zone-id/132913)
+- [SSH Public Key](https://www.linode.com/docs/guides/use-public-key-authentication-with-ssh) (reccomended)
+- root Password (optional)
 
 > note: This example uses SSH keys only. To use root password uncomment in `main.tf`, `variables.tf` and `terraform.tvars`.
 
 # Single Linode Instance
+
 This example `terraform.tfvars` will deploy a single Linode instance.
+
 ```
 server_name = "ubuntu20.04"
 #root_pass = ""
@@ -46,7 +46,8 @@ cloudflare_zone_id = "--- Cloudflare Zone ID ---"
 
 This example `terraform.tfvars` will deploy multiple Linode instances.
 
-This example will create 5 Linode instances using difference distro images. It does this by using arrays and will loop though each`server_name`. It is also possible using the same arrays to specify different *regions* and *types* by adding `[count.index]` in `main.tf`.
+This example will create 5 Linode instances using difference distro images. It does this by using arrays and will loop though each`server_name`. It is also possible using the same arrays to specify different _regions_ and _types_ by adding `[count.index]` in `main.tf`.
+
 ```
 server_name = [ "ubuntu20.04", "ubuntu18.04", "debian11", "almalinux8", "centos7" ]
 #root_pass = ""
