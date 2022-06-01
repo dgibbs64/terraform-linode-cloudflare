@@ -6,14 +6,14 @@
 
 Using Terraform, this configuration will allow you to spin up multiple Linode instances, create Cloudflare A records for the Linode instances and apply rDNS to the Linode instances.
 
-# Requirements
+## Requirements
 
 - [Linode Account](https://linode.com)
 - [Cloudflare Account](https://www.cloudflare.com/)
 - Domain name
 - [Terraform installed](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
-# Authentication
+## Authentication
 
 Multiple tokens will be required to authenticate terraform with Linode and Cloudflare.
 
@@ -25,11 +25,11 @@ Multiple tokens will be required to authenticate terraform with Linode and Cloud
 
 > note: This example uses SSH keys only. To use root password uncomment in `main.tf`, `variables.tf` and `terraform.tvars`.
 
-# Single Linode Instance
+## Single Linode Instance
 
 This example `terraform.tfvars` will deploy a single Linode instance.
 
-```
+```terraform
 server_name = "ubuntu20.04"
 #root_pass = ""
 authorized_keys = "ecdsa-sha2-nistp256 AAAAE2...rTucc= dgibbs@home"
@@ -42,13 +42,13 @@ cloudflare_token = "--- Cloudflare API Token ---"
 cloudflare_zone_id = "--- Cloudflare Zone ID ---"
 ```
 
-# Multiple Linode Instance
+## Multiple Linode Instance
 
 This example `terraform.tfvars` will deploy multiple Linode instances.
 
 This example will create 5 Linode instances using difference distro images. It does this by using arrays and will loop though each`server_name`. It is also possible using the same arrays to specify different _regions_ and _types_ by adding `[count.index]` in `main.tf`.
 
-```
+```terraform
 server_name = [ "ubuntu20.04", "ubuntu18.04", "debian11", "almalinux8", "centos7" ]
 #root_pass = ""
 authorized_keys = "ecdsa-sha2-nistp256 AAAAE2...rTucc= dgibbs@home"
