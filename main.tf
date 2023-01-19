@@ -3,15 +3,15 @@ terraform {
   required_providers {
     linode = {
       source  = "linode/linode"
-      version = "1.27.2"
+      version = "1.29.4"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "3.15.0"
+      version = "3.32.0"
     }
     time = {
       source  = "hashicorp/time"
-      version = "~> 0.7.2"
+      version = "~> 0.9.1"
     }
   }
 }
@@ -50,6 +50,7 @@ resource "cloudflare_record" "cloudflare-dns" {
   type    = "A"
   proxied = false
   ttl     = 60
+  allow_overwrite = true
 }
 
 # Wait 60 Seconds to allow A Record to update.
