@@ -12,7 +12,7 @@ Using Terraform, this configuration will allow you to spin up multiple Linode in
 - [Cloudflare Account](https://www.cloudflare.com/)
 - Domain name
 - [Terraform installed](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-
+- [List of current images](https://api.linode.com/v4/images)
 ## Authentication
 
 Multiple tokens will be required to authenticate terraform with Linode and Cloudflare.
