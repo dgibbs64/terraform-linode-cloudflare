@@ -49,7 +49,7 @@ resource "cloudflare_record" "cloudflare-dns" {
   value   = linode_instance.linode-server[count.index].ip_address
   type    = "A"
   proxied = false
-  ttl     = 60
+  ttl     = 3600
   allow_overwrite = true
 }
 
