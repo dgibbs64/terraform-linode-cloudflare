@@ -3,15 +3,15 @@ terraform {
   required_providers {
     linode = {
       source  = "linode/linode"
-      version = "2.4.0"
+      version = "~> 2.29.0"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.8.0"
+      version = "~> 4.43.0"
     }
     time = {
       source  = "hashicorp/time"
-      version = "~> 0.9.1"
+      version = "~> 0.12.1"
     }
   }
 }
@@ -49,20 +49,20 @@ resource "cloudflare_record" "cloudflare-dns" {
   value   = linode_instance.linode-server[count.index].ip_address
   type    = "A"
   proxied = false
-  ttl     = 60
+  ttl     = 5
   allow_overwrite = true
 }
 
-# Wait 120 Seconds to allow A Record to update.
-resource "time_sleep" "wait_120_seconds" {
+# Wait 300 Seconds to allow A Record to update.
+resource "time_sleep" "wait_300_seconds" {
   depends_on      = [cloudflare_record.cloudflare-dns]
-  create_duration = "120s"
+  create_duration = "300s"
 }
 
 # Ensure Linode Instance rDNS exists.
 # rDNS has to check existing A record exists and matches
 resource "linode_rdns" "my_rdns" {
-  depends_on = [time_sleep.wait_120_seconds]
+  depends_on = [time_sleep.wait_300_seconds]
   count      = length(linode_instance.linode-server)
   address    = linode_instance.linode-server[count.index].ip_address
   rdns       = cloudflare_record.cloudflare-dns[count.index].hostname
