@@ -29,8 +29,8 @@ provider "cloudflare" {
 
 # Ensure Linodes Instances Exist.
 resource "linode_instance" "linode-server" {
-  count2       = length(var.server_name)
-  label      = var.server_name[count.index]
+  count           = length(var.server_name)
+  label           = var.server_name[count.index]
   image           = var.linode_image[count.index]
   tags            = var.linode_tags
   region          = var.linode_region
@@ -43,13 +43,13 @@ resource "linode_instance" "linode-server" {
 # Ensure Cloudflare A Record Exists.
 # 60 Second ttl setup to allow rDNS to work
 resource "cloudflare_record" "cloudflare-dns" {
-  count   = length(linode_instance.linode-server)
-  zone_id = var.cloudflare_zone_id
-  name    = var.server_name[count.index]
-  value   = linode_instance.linode-server[count.index].ip_address
-  type    = "A"
-  proxied = false
-  ttl     = 60
+  count           = length(linode_instance.linode-server)
+  zone_id         = var.cloudflare_zone_id
+  name            = var.server_name[count.index]
+  value           = linode_instance.linode-server[count.index].ip_address
+  type            = "A"
+  proxied         = false
+  ttl             = 60
   allow_overwrite = true
 }
 
