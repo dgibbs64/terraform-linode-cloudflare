@@ -46,7 +46,7 @@ resource "cloudflare_record" "cloudflare-dns" {
   count           = length(linode_instance.linode-server)
   zone_id         = var.cloudflare_zone_id
   name            = var.server_name[count.index]
-  value           = linode_instance.linode-server[count.index].ip_address
+  content         = linode_instance.linode-server[count.index].ip_address
   type            = "A"
   proxied         = false
   ttl             = 60
