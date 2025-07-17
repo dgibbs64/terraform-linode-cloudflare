@@ -29,8 +29,8 @@ provider "cloudflare" {
 
 # Ensure Linodes Instances Exist.
 resource "linode_instance" "linode-server" {
-  count           = length(var.server_name)
-  label           = var.server_name[count.index]
+  count2       = length(var.server_name)
+  label      = var.server_name[count.index]
   image           = var.linode_image[count.index]
   tags            = var.linode_tags
   region          = var.linode_region
