@@ -66,7 +66,7 @@ resource "linode_rdns" "my_rdns" {
   depends_on = [time_sleep.wait_300_seconds]
   count      = length(linode_instance.linode-server)
   address    = linode_instance.linode-server[count.index].ip_address
-  rdns       = cloudflare_dns_record.cloudflare-dns[count.index].hostname
+  rdns       = cloudflare_dns_record.cloudflare-dns[count.index].name
 }
 
 output "linode_ip_addr" {
@@ -74,5 +74,5 @@ output "linode_ip_addr" {
 }
 
 output "cloudflare_hostname" {
-  value = cloudflare_dns_record.cloudflare-dns[*].hostname
+  value = cloudflare_dns_record.cloudflare-dns[*].name
 }
