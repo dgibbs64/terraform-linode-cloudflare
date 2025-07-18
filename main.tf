@@ -42,20 +42,21 @@ resource "linode_instance" "linode-server" {
 
 # Ensure Cloudflare A Record Exists.
 # 60 Second ttl setup to allow rDNS to work
-resource "cloudflare_record" "cloudflare-dns" {
-  count           = length(linode_instance.linode-server)
-  zone_id         = var.cloudflare_zone_id
-  name            = var.server_name[count.index]
-  content         = linode_instance.linode-server[count.index].ip_address
-  type            = "A"
-  proxied         = false
-  ttl             = 60
-  allow_overwrite = true
+resource "cloudflare_dns_record" "cloudflare-dns" {
+  count   = length(linode_instance.linode-server)
+  zone_id = var.cloudflare_zone_id
+  name    = var.server_name[count.index]
+  content = linode_instance.linode-server[count.index].ip_address
+  type    = "A"
+  proxied = false
+  ttl     = 60
+  comment = "Managed by Terraform"
+  # settings and tags are optional, add if needed
 }
 
 # Wait 300 Seconds to allow A Record to update.
 resource "time_sleep" "wait_300_seconds" {
-  depends_on      = [cloudflare_record.cloudflare-dns]
+  depends_on      = [cloudflare_dns_record.cloudflare-dns]
   create_duration = "300s"
 }
 
@@ -65,7 +66,7 @@ resource "linode_rdns" "my_rdns" {
   depends_on = [time_sleep.wait_300_seconds]
   count      = length(linode_instance.linode-server)
   address    = linode_instance.linode-server[count.index].ip_address
-  rdns       = cloudflare_record.cloudflare-dns[count.index].hostname
+  rdns       = cloudflare_dns_record.cloudflare-dns[count.index].hostname
 }
 
 output "linode_ip_addr" {
@@ -73,5 +74,5 @@ output "linode_ip_addr" {
 }
 
 output "cloudflare_hostname" {
-  value = cloudflare_record.cloudflare-dns[*].hostname
+  value = cloudflare_dns_record.cloudflare-dns[*].hostname
 }
