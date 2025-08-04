@@ -3,7 +3,10 @@
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "ghcr.io/devcontainers/features/terraform:1": {
-      "installTFsec": true
+      "installTFsec": true,
+      "installTerraformDocs": true,
+      "tflint": "latest",
+      "terragrunt": "latest"
     },
     "ghcr.io/devcontainers-community/npm-features/prettier:1": {},
     "ghcr.io/devcontainers-extra/features/actionlint:1": {},
