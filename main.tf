@@ -3,11 +3,11 @@ terraform {
   required_providers {
     linode = {
       source  = "linode/linode"
-      version = "~> 3.1.0"
+      version = "~> 3.1.1"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 5.7.1"
+      version = "~> 5.7.2"
     }
     time = {
       source  = "hashicorp/time"
