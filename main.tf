@@ -1,32 +1,3 @@
-# Linode Provider definition
-terraform {
-  required_providers {
-    linode = {
-      source  = "linode/linode"
-      version = "~> 3.1.0"
-    }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 5.7.1"
-    }
-    time = {
-      source  = "hashicorp/time"
-      version = "~> 0.13.1"
-    }
-  }
-}
-
-provider "time" {
-}
-
-provider "linode" {
-  token = var.linode_token
-}
-
-provider "cloudflare" {
-  api_token = var.cloudflare_token
-}
-
 # Ensure Linodes Instances Exist.
 resource "linode_instance" "linode-server" {
   count           = length(var.server_name)
@@ -67,12 +38,4 @@ resource "linode_rdns" "my_rdns" {
   count      = length(linode_instance.linode-server)
   address    = linode_instance.linode-server[count.index].ip_address
   rdns       = cloudflare_dns_record.cloudflare-dns[count.index].name
-}
-
-output "linode_ip_addr" {
-  value = linode_instance.linode-server[*].ip_address
-}
-
-output "cloudflare_hostname" {
-  value = cloudflare_dns_record.cloudflare-dns[*].name
 }
