@@ -1,4 +1,3 @@
----
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -7,6 +6,11 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: terraform
     directory: "/"
     schedule:
       interval: weekly
