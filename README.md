@@ -22,6 +22,7 @@ Multiple tokens will be required to authenticate terraform with Linode and Cloud
 - [Linode API Token](https://www.linode.com/docs/guides/getting-started-with-the-linode-api/)
 - [Cloudflare API Token](https://developers.cloudflare.com/api/tokens/create)
 - [Cloudflare Zone ID](https://community.cloudflare.com/t/where-to-find-zone-id/132913)
+- Cloudflare Account ID (optional, useful for Terraform Cloud variable sets)
 - [SSH Public Key](https://www.linode.com/docs/guides/use-public-key-authentication-with-ssh) (recommended)
 
 ## Single Linode Instance
@@ -38,6 +39,7 @@ linode_type = "g6-nanode-1"
 linode_tags = [ "Tag 1", "Tag 2" ]
 cloudflare_token = "--- Cloudflare API Token ---"
 cloudflare_zone_id = "--- Cloudflare Zone ID ---"
+#cloudflare_account_id = "--- Cloudflare Account ID ---"
 ```
 
 ## Multiple Linode Instance
@@ -56,6 +58,7 @@ linode_type = "g6-nanode-1"
 linode_tags = [ "Tag 1", "Tag 2" ]
 cloudflare_token = "--- Cloudflare API Token ---"
 cloudflare_zone_id = "--- Cloudflare Zone ID ---"
+#cloudflare_account_id = "--- Cloudflare Account ID ---"
 ```
 
 ---

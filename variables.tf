@@ -52,7 +52,9 @@ variable "cloudflare_zone_id" {
   type        = string
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cloudflare_account_id" {
   description = "Cloudflare Account ID"
   type        = string
+  default     = null
 }
