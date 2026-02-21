@@ -1,0 +1,40 @@
+name: Terraform Docs
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "**/*.tf"
+      - ".terraform-docs.yml"
+      - ".github/workflows/action-terraform-docs.yml"
+  push:
+    branches:
+      - "*"
+    paths:
+      - "**/*.tf"
+      - ".terraform-docs.yml"
+      - ".github/workflows/action-terraform-docs.yml"
+
+concurrency:
+  group: terraform-docs-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Render terraform docs
+        uses: terraform-docs/gh-actions@v1.4.1
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
+          git-commit-message: "docs(terraform): update terraform-docs"
