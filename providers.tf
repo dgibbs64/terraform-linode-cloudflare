@@ -8,7 +8,7 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 5.7.1"
+      version = "~> 5.17.0"
     }
     time = {
       source  = "hashicorp/time"
