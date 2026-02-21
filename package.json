@@ -1,0 +1,21 @@
+{
+  "name": "terraform-linode-cloudflare",
+  "version": "1.0.0",
+  "description": "This repository provides a Terraform configuration to deploy a virtual machine for ingesting scanner output. The VM enables scanners to securely upload documents via SFTP, and uses rclone to transfer those documents to a cloud storage service. The deployment leverages a Linode VM and configures Cloudflare DNS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgibbs64/terraform-linode-cloudflare.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dgibbs64/terraform-linode-cloudflare/issues"
+  },
+  "homepage": "https://github.com/dgibbs64/terraform-linode-cloudflare#readme"
+}
